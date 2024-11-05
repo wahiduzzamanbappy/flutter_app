@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_screen.dart';
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.amber,
           foregroundColor: Colors.white,
@@ -77,7 +79,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: const MyHomePage(),
     );
   }

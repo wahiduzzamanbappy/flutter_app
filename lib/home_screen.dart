@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 14,
                 ),
                 const TextField(
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     hintText: "Contact Number",
                     hintStyle: TextStyle(
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 14,
                 ),
                 const TextField(
-                  keyboardType: TextInputType.phone,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: "Confirm Password",
                     hintStyle: TextStyle(
