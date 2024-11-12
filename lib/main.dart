@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/home_screen.dart';
+import 'package:flutter_app/booking_screen.dart';
+import 'package:flutter_app/national_flag.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,75 +12,96 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: "/home",
+      routes: {'/home': (context) => const Home(),
+        '/bookingScreen': (context) => const BookingScreen(),
+        '/nationalFlag' : (context) => const NationalFlag(),
+      },
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+      home: const Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 78, 159, 160),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Create Event',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.white,
+              ),
             ),
-          ),
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.orange,
-              style: BorderStyle.solid,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: 'Event Name',
+                  hintStyle: TextStyle(color: Colors.white54),
+                ),
+              ),
             ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextFormField(
+                keyboardType: TextInputType.datetime,
+                decoration: const InputDecoration(
+                  hintText: 'MM/DD/YYYY',
+                  hintStyle: TextStyle(color: Colors.white54),
+                ),
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextFormField(
+
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  hintText: 'Location',
+                  hintStyle: TextStyle(color: Colors.white54),
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              width: 300,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 255, 181, 214),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/bookingScreen");
+                },
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      darkTheme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.amber,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.amber,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.amber,
-            ),
-          ),
-        ),
-      ),
-      themeMode: ThemeMode.system,
-      home: const MyHomePage(),
     );
   }
 }
