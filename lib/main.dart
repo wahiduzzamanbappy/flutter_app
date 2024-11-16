@@ -2,104 +2,222 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-// This is the main application widget.
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'The Bottom Sheet',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-          backgroundColor: Colors.green,
-        ),
-        body: const ModalBottomSheetDemo(),
-      ),
+      home: FirstScreen(),
     );
   }
 }
 
-class ModalBottomSheetDemo extends StatelessWidget {
-  const ModalBottomSheetDemo({Key? key}) : super(key: key);
+class FirstScreen extends StatefulWidget {
+  const FirstScreen({super.key});
+
+  @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  bool isChecked = true;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        child: const Text('showModalBottomSheet'),
-        onPressed: () {
-          // when raised button is pressed
-          // we display showModalBottomSheet
-          showModalBottomSheet<void>(
-            // context and builder are
-            // required properties in this widget
-            context: context,
-            builder: (BuildContext context) {
-              // we set up a container inside which
-              // we create center column and display text
-
-              // Returning SizedBox instead of a Container
-              return const SizedBox(
-                height: 400,
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('This is the modal bottom Sheet'),
-                        Icon(Icons.ac_unit),
-                        Icon(Icons.ac_unit),
-                        Icon(Icons.ac_unit),
-                        Icon(Icons.ac_unit),
-                        Icon(Icons.ac_unit),
-                        Icon(Icons.ac_unit),
-
-                      ],
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 254, 247, 255),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 100,
+                    width: 300,
+                    child: Text(
+                      "Create an account",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
                     ),
                   ),
                 ),
-              );
-            },
-          );
-        },
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    checkColor: Colors.white,
+                    activeColor: Colors.green,
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ),
+                  const Text(
+                    'I agree to the terms & conditions.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      backgroundColor: Colors.green,
+                      //maximumSize: Size.fromRadius(10),
+                    ),
+                    onPressed: () {},
+                    child: const Text('Sign Up'),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Or'),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    autofocus: true,
+                    focusColor: Colors.green,
+                    highlightColor: Colors.grey,
+                    onPressed: () {},
+                    icon: Image.network(
+                      "https://cdn1.iconfinder.com/data/icons/google-s-"
+                      "logo/150/Google_Icons-09-512.png",
+                      height: 50,
+                      width: 80,
+                    ),
+                  ),
+                  IconButton(
+                    autofocus: true,
+                    focusColor: Colors.green,
+                    highlightColor: Colors.grey,
+                    onPressed: () {},
+                    icon: Image.network(
+                      "https://img.freepik.com/premium-vector/vector-blue-social"
+                      "-media-logo_1080184-225.jpg?semt=ais_hybrid",
+                      height: 50,
+                      width: 80,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
-
-      // RaisedButton is deprecated and should not be used
-      // Use ElevatedButton instead.
-
-      // child: RaisedButton(
-      //	 child: const Text('showModalBottomSheet'),
-      //	 onPressed: () {
-
-      //	 // when raised button is pressed
-      //	 // we display showModalBottomSheet
-      //	 showModalBottomSheet<void>(
-
-      //		 // context and builder are
-      //		 // required properties in this widget
-      //		 context: context,
-      //		 builder: (BuildContext context) {
-
-      //		 // we set up a container inside which
-      //		 // we create center column and display text
-      //		 return Container(
-      //			 height: 200,
-      //			 child: Center(
-      //			 child: Column(
-      //				 mainAxisAlignment: MainAxisAlignment.center,
-      //				 children: <Widget>[
-      //				 const Text('GeeksforGeeks'),
-      //				 ],
-      //			 ),
-      //			 ),
-      //		 );
-      //		 },
-      //	 );
-      //	 },
-      // ),
+      /*bottomNavigationBar: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.home),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.contact_page_outlined),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.message),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.camera_alt_outlined),
+            ),
+          ),
+        ],
+      ),*/
     );
   }
 }
